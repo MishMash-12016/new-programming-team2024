@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.teamcode.Commands.ShootByPower;
 import org.firstinspires.ftc.teamcode.Commands.ShootBySupplier;
@@ -23,7 +24,6 @@ public class BasicTeleOp extends CommandOpMode {
         //init subsystem
         //Ex: subsystem  = new Subsystem(hardwareMap)
         shooter = new Shooter(hardwareMap);
-
         //setup buttons
         //Ex: gamepadEx1.getGamepadButton(GamepadKeys.Button.A).whenActive(new SomethingCommand());
         gamepadEx1.getGamepadButton(GamepadKeys.Button.X).whileActiveOnce(new ShootByPower(shooter,0.5));
@@ -40,7 +40,6 @@ public class BasicTeleOp extends CommandOpMode {
 
         //setting up telemetry
         //telemetry.addData("name", value)
-        telemetry.addData("vel", shooter.getVelocity());
         telemetry.update();
     }
 }

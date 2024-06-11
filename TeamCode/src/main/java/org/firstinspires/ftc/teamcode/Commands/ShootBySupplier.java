@@ -5,15 +5,14 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import org.firstinspires.ftc.teamcode.SubSystems.Shooter;
 
 import java.util.function.DoubleSupplier;
-import java.util.function.Supplier;
 
 public class ShootBySupplier extends CommandBase {
-
     Shooter shooter;
     DoubleSupplier power;
+
     public ShootBySupplier(Shooter shooter, DoubleSupplier power){
-        this.shooter = shooter;
         this.power = power;
+        this.shooter = shooter;
         this.addRequirements(shooter);
     }
 
@@ -21,9 +20,8 @@ public class ShootBySupplier extends CommandBase {
     public void execute() {
         shooter.setPower(power.getAsDouble());
     }
-
     @Override
-    public void end(boolean interrupted) {
+    public  void end(boolean interrupted) {
         shooter.setPower(0);
     }
 }
