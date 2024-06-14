@@ -7,6 +7,7 @@ public class Configuration {
     public static final String DRIVE_TRAIN_FRONT_RIGHT = "frontRight"; //2
     public static final String IMU = "imu";
     public static final String SHOOTER = "shooter";
+    public static final String SHOOTER_MOTOR2 = "shooterMotor2";
 
 }
 

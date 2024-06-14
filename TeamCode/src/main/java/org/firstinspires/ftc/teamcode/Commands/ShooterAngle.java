@@ -1,29 +1,27 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
+import com.arcrobotics.ftclib.command.InstantCommand;
+import com.qualcomm.robotcore.robocol.Command;
 
 import org.firstinspires.ftc.teamcode.SubSystems.Shooter;
 
 import java.util.function.DoubleSupplier;
 import java.util.function.Supplier;
 
-public class ShootBySupplier extends CommandBase {
+public class ShooterAngle extends CommandBase {
 
     Shooter shooter;
-    DoubleSupplier power;
-    public ShootBySupplier(Shooter shooter, DoubleSupplier power){
+    DoubleSupplier position;
+
+    public ShooterAngle(Shooter shooter, DoubleSupplier position) {
         this.shooter = shooter;
-        this.power = power;
+        this.position = position;
         this.addRequirements(shooter);
     }
 
     @Override
     public void execute() {
-        shooter.setPower(power.getAsDouble());
-    }
-
-    @Override
-    public void end(boolean interrupted) {
-        shooter.setPower(0);
+        shooter.setPosition(position.getAsDouble());
     }
 }
