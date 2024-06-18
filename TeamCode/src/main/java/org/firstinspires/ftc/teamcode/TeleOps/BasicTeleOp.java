@@ -1,17 +1,12 @@
 package org.firstinspires.ftc.teamcode.TeleOps;
 
-import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandOpMode;
-import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Commands.DefaultShooterPower;
-import org.firstinspires.ftc.teamcode.Commands.Shoot;
-import org.firstinspires.ftc.teamcode.Commands.ShootAngleBySupplier;
-import org.firstinspires.ftc.teamcode.Commands.ShootByPower;
-import org.firstinspires.ftc.teamcode.Commands.ShootBySupplier;
+import org.firstinspires.ftc.teamcode.Commands.ShootWithHood;
+import org.firstinspires.ftc.teamcode.Commands.ToggleShooter;
 import org.firstinspires.ftc.teamcode.SubSystems.Shooter;
 
 @TeleOp(name = "Teleop")
@@ -32,7 +27,8 @@ public class BasicTeleOp extends CommandOpMode {
 
         //setup buttons
         //Ex: gamepadEx1.getGamepadButton(GamepadKeys.Button.A).whenActive(new SomethingCommand());
-        gamepadEx1.getGamepadButton(GamepadKeys.Button.X).whenPressed(new Shoot(shooter));
+        gamepadEx1.getGamepadButton(GamepadKeys.Button.B).whenPressed(new ShootWithHood(shooter));
+        gamepadEx1.getGamepadButton(GamepadKeys.Button.A).toggleWhenActive(new ToggleShooter(shooter, 1));
 
 
         //create new triggers
