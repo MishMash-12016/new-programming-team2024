@@ -13,8 +13,9 @@ public class Shooter extends SubsystemBase {
     DcMotorEx shooterMotor;
     DcMotorEx shooterMotor2;
     Servo shooterAngle;
+    final double TICKS_PER_ROTATION = 1;
     public Shooter(HardwareMap hardwareMap) {
-        this.shooterMotor = hardwareMap.get(DcMotorEx.class, "shooter");
+            this.shooterMotor = hardwareMap.get(DcMotorEx.class, "shooter");
         this.shooterMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         this.shooterMotor2 = hardwareMap.get(DcMotorEx.class, "shooter2");
         this.shooterAngle = hardwareMap.get(Servo.class, "shooterAngle");
@@ -27,6 +28,10 @@ public class Shooter extends SubsystemBase {
     }
     public void setPosition(double position){
         shooterAngle.setPosition(position);
+    }
+
+    public double getVelocity(){
+        return (shooterMotor.getVelocity() / TICKS_PER_ROTATION)*60;
     }
 
 }

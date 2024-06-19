@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Commands.ShootByPower;
+import org.firstinspires.ftc.teamcode.Commands.ShootByRPM;
 import org.firstinspires.ftc.teamcode.Commands.ShooterAngle;
 import org.firstinspires.ftc.teamcode.SubSystems.Shooter;
 
@@ -28,6 +29,7 @@ public class BasicTeleOp extends CommandOpMode {
         gamepadEx1.getGamepadButton(GamepadKeys.Button.X).whenActive(new ShootByPower(shooter,1));
         gamepadEx1.getGamepadButton(GamepadKeys.Button.Y).whenActive(new ShootByPower(shooter,0));
         gamepadEx1.getGamepadButton(GamepadKeys.Button.A).whileActiveOnce(new ShooterAngle(shooter, gamepadEx1::getRightY));
+        gamepadEx1.getGamepadButton(GamepadKeys.Button.B).whenActive(new ShootByRPM(shooter,1000));
 
 
         //create new triggers
