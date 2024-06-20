@@ -22,6 +22,6 @@ public class ShootAngleBySupplier extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        shooter.setPosition(0);
+        shooter.setPosition(0.5);
     }
 }

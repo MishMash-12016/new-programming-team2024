@@ -23,5 +23,4 @@ public class Shooter extends SubsystemBase {
     public void setPosition(double angle){
         servo.setPosition(angle);
     }
-
 }
