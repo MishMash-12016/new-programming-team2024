@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.SubSystems.Swerve;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDController;
+import com.arcrobotics.ftclib.geometry.Pose2d;
+import com.arcrobotics.ftclib.geometry.Vector2d;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -16,6 +18,9 @@ public class Module extends SubsystemBase{
     private PIDController pidController = new PIDController(1,1,1);
     double targetAngle = 0;
     double speed = 0;
+
+
+
     private final double OFFSET;
     private final double TICKS_PER_ROTATION = 1;
 
@@ -31,7 +36,14 @@ public class Module extends SubsystemBase{
      * **/
     public double getAngle() {return this.angleEncoder.getAsDouble() / TICKS_PER_ROTATION * 2 * Math.PI;}
     public void setSpeed(double speed){this.speed = speed;}
-    public void setAngle(double angle){this.targetAngle = angle;}
+    public void setAngle(double angle){
+        if(getAngle() - angle % 360 > 90){
+            this.targetAngle = (angle + 180) % 360;
+            speed = speed * -1;
+        }else {this.targetAngle = angle;}
+    }
+
+
 
 
     @Override
