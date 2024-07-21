@@ -10,6 +10,9 @@ public class Elevator extends SubsystemBase {
     private final double TICKS_PER_REVOLUTION = 537.6;
     private final double SPROCKET_DIAMETER = 2.59;
     private final int NUM_LEVELS = 3;
+    private final double kP = 0;
+    private final double kI = 0;
+    private final double kD = 0;
     private DcMotorEx motorRight;
     private DcMotorEx motorLeft;
     private PIDController pidController;
@@ -17,6 +20,7 @@ public class Elevator extends SubsystemBase {
     public Elevator(HardwareMap hardwareMap) {
         this.motorRight = hardwareMap.get(DcMotorEx.class, "ElevatorRight");
         this.motorLeft = hardwareMap.get(DcMotorEx.class, "ElevatorLeft");
+        this.pidController = new PIDController(kP, kI, kD);
         motorRight.setDirection(DcMotorSimple.Direction.REVERSE);
         //TODO: check which motor to reverse
     }
@@ -26,7 +30,15 @@ public class Elevator extends SubsystemBase {
         motorRight.setPower(power);
         motorLeft.setPower(power);
     }
+    public PIDController getPidController() {
+        return pidController;
+    }
 
+
+    /**
+     * give me the height of the elevator (Cm)
+     * @return
+     */
     public double getHeight() {
         double revolution = motorRight.getCurrentPosition() / TICKS_PER_REVOLUTION; // this is how many revolutions have passed, rev - revolution.
         double chainLengthenInRev = Math.PI * SPROCKET_DIAMETER; // peremeter
